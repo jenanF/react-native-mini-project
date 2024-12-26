@@ -15,7 +15,7 @@ async function getCategoryById(id) {
         });
 }
 
-async function createAnCategory() {
+async function createACategory() {
 
     instance.post('/mini-project/api/categories/')
         .then(response => {
@@ -23,3 +23,5 @@ async function createAnCategory() {
         });
 
 }
+
+export { getAllCategories, getCategoryById, createACategory }

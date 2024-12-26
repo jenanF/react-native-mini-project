@@ -1,10 +1,19 @@
 import instance from ".";
 
+// async function getAllItems() {
+//     instance.get('/mini-project/api/items')
+//         .then(response => {
+//             console.log(response.data);
+//         });
+
+// }
+
 async function getAllItems() {
-    instance.get('/mini-project/api/items')
-        .then(response => {
-            console.log(response.data);
-        });
+    const data = await instance.get('/mini-project/api/items');
+    const Data = await data.json();
+    console.log(Data);
+    return Data;
+
 
 }
 
@@ -23,5 +32,7 @@ async function createAnItem(categoryId) {
         });
 
 }
+
+export { getAllItems, getItemById, createAnItem }
 
 

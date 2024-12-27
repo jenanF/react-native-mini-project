@@ -5,7 +5,7 @@ const items = [
         price: 1.5,
         description: 'Fresh and crunchy red apple.',
         image: '',  // Empty string for now
-        category: 'Fruits'
+        category: 'Food'
     },
     {
         id: '2',
@@ -13,7 +13,7 @@ const items = [
         price: 1.2,
         description: 'Sweet ripe banana, perfect for a snack.',
         image: '',
-        category: 'Fruits'
+        category: 'Food'
     },
     {
         id: '3',
@@ -21,7 +21,7 @@ const items = [
         price: 2.0,
         description: 'Juicy and tangy orange.',
         image: '',
-        category: 'Fruits'
+        category: 'Food'
     },
     {
         id: '4',
@@ -29,7 +29,7 @@ const items = [
         price: 0.8,
         description: 'Organic, fresh carrot.',
         image: '',
-        category: 'Vegetables'
+        category: 'Food'
     },
     {
         id: '5',
@@ -37,7 +37,7 @@ const items = [
         price: 1.0,
         description: 'Crisp and green lettuce leaves.',
         image: '',
-        category: 'Vegetables'
+        category: 'Food'
     },
     {
         id: '6',
@@ -45,7 +45,7 @@ const items = [
         price: 0.5,
         description: 'Versatile and hearty potato.',
         image: '',
-        category: 'Vegetables'
+        category: 'Food'
     },
     {
         id: '7',

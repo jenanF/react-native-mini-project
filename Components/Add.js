@@ -2,36 +2,55 @@ import { View, Text, TextInput, Button } from "react-native"
 import { StyleSheet } from "react-native";
 import { useState } from "react";
 import { RadioButton } from 'react-native-paper';
+import items from '../data'
 //import { Button } from 'react-native-paper';
 
 
 const Add = () => {
-    const [text, onChangeText] = useState('');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [image, setImage] = useState('');
 
-    const [selectedValue, setSelectedValue] = useState('Option 1');
+    const [selectedValue, setSelectedValue] = useState('Food');
+
+
+
+    const handleSubmit = (name, description, price, image, category) => {
+
+        let id = items.length + 1;
+        const newItem = { name, description, price, image, category, id }
+
+        items.push(newItem);
+
+        console.log(newItem);
+        console.log(items)
+
+    }
     return (
         <View>
             <Text style={styles.title}>Add An Item</Text>
             <TextInput
                 style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={setName}
+                value={name}
                 placeholder="Enter Name"
 
             />
 
             <TextInput
                 style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={setDescription}
+                value={description}
                 placeholder="Enter description"
 
             />
 
             <TextInput
                 style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={setPrice}
+                value={price}
+
                 placeholder="Enter Price"
 
             />
@@ -39,8 +58,8 @@ const Add = () => {
 
             <TextInput
                 style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={setImage}
+                value={image}
                 placeholder="Enter ImageURL"
 
             />
@@ -48,33 +67,33 @@ const Add = () => {
             <View style={styles.radiobuttons}>
                 <View style={styles.radioGroup}>
                     <RadioButton
-                        value="Option 1"
-                        status={selectedValue === 'Option 1' ? 'checked' : 'unchecked'}
-                        onPress={() => setSelectedValue('Option 1')}
+                        value="Food"
+                        status={selectedValue === 'Food' ? 'checked' : 'unchecked'}
+                        onPress={() => setSelectedValue('Food')}
                     />
-                    <Text style={styles.optionText}>Option 1</Text>
+                    <Text style={styles.optionText}>Food</Text>
                 </View>
 
                 <View style={styles.radioGroup}>
                     <RadioButton
-                        value="Option 2"
-                        status={selectedValue === 'Option 2' ? 'checked' : 'unchecked'}
-                        onPress={() => setSelectedValue('Option 2')}
+                        value="Personal Care"
+                        status={selectedValue === 'Personal Care' ? 'checked' : 'unchecked'}
+                        onPress={() => setSelectedValue('Personal Care')}
                     />
-                    <Text style={styles.optionText}>Option 2</Text>
+                    <Text style={styles.optionText}>Personal Care</Text>
                 </View>
 
                 <View style={styles.radioGroup}>
                     <RadioButton
-                        value="Option 3"
-                        status={selectedValue === 'Option 3' ? 'checked' : 'unchecked'}
-                        onPress={() => setSelectedValue('Option 3')}
+                        value="Clothing"
+                        status={selectedValue === 'Clothing' ? 'checked' : 'unchecked'}
+                        onPress={() => setSelectedValue('Clothing')}
                     />
-                    <Text style={styles.optionText}>Option 3</Text>
+                    <Text style={styles.optionText}>Clothing</Text>
                 </View>
             </View>
 
-            <Button title="Submit" style={styles.submit}>Submit</Button>
+            <Button title="Submit" style={styles.submit} onPress={() => handleSubmit(name, description, price, image, selectedValue)}>Submit</Button>
         </View>
     )
 }

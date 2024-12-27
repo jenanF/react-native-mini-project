@@ -9,24 +9,34 @@ import SearchBar from "react-native-elements/dist/searchbar/SearchBar-ios";
 import { RadioButton } from 'react-native-paper';
 import { useState } from "react";
 import items from "../data";
+import StackNav from "../navigation/StackNav";
 
 
-const clickTest = () => {
-    getAllItems();
-}
+
 
 const Home = () => {
     const navigation = useNavigation();
-    const [checked, setChecked] = useState('first');
     const [searchQuery, setSearchQuery] = useState('');
 
-    const [selectedValue, setSelectedValue] = useState('Option 1');
+    const [selectedValue, setSelectedValue] = useState('All');
 
-    const filteredData = items.filter(item =>
+    const filters = items.filter((item) => {
+        return item.category === selectedValue
+    }
+    );
+
+    const filteredData = filters.filter(item =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const filteredDataAll = items.filter(item =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
 
+    const handleItemPress = (id) => {
+        navigation.navigate('Details', { id }); // Pass the item ID as a parameter
+    };
 
     // const { data, isFetching, isSuccess } = useQuery({
     //     queryKey: ["listItems"],
@@ -45,31 +55,41 @@ const Home = () => {
                 onChangeText={setSearchQuery}
             />
             <View style={styles.radiobuttons}>
+
                 <View style={styles.radioGroup}>
                     <RadioButton
-                        value="Option 1"
-                        status={selectedValue === 'Option 1' ? 'checked' : 'unchecked'}
-                        onPress={() => setSelectedValue('Option 1')}
+                        value="All"
+                        status={selectedValue === 'All' ? 'checked' : 'unchecked'}
+                        onPress={() => setSelectedValue('All')}
                     />
-                    <Text style={styles.optionText}>Option 1</Text>
+                    <Text style={styles.optionText}>All</Text>
                 </View>
 
                 <View style={styles.radioGroup}>
                     <RadioButton
-                        value="Option 2"
-                        status={selectedValue === 'Option 2' ? 'checked' : 'unchecked'}
-                        onPress={() => setSelectedValue('Option 2')}
+                        value="Food"
+                        status={selectedValue === 'Food' ? 'checked' : 'unchecked'}
+                        onPress={() => setSelectedValue('Food')}
                     />
-                    <Text style={styles.optionText}>Option 2</Text>
+                    <Text style={styles.optionText}>Food</Text>
                 </View>
 
                 <View style={styles.radioGroup}>
                     <RadioButton
-                        value="Option 3"
-                        status={selectedValue === 'Option 3' ? 'checked' : 'unchecked'}
-                        onPress={() => setSelectedValue('Option 3')}
+                        value="Personal Care"
+                        status={selectedValue === 'Personal Care' ? 'checked' : 'unchecked'}
+                        onPress={() => setSelectedValue('Personal Care')}
                     />
-                    <Text style={styles.optionText}>Option 3</Text>
+                    <Text style={styles.optionText}>Personal Care</Text>
+                </View>
+
+                <View style={styles.radioGroup}>
+                    <RadioButton
+                        value="Clothing"
+                        status={selectedValue === 'Clothing' ? 'checked' : 'unchecked'}
+                        onPress={() => setSelectedValue('Clothing')}
+                    />
+                    <Text style={styles.optionText}>Clothing</Text>
                 </View>
             </View>
 
@@ -87,9 +107,9 @@ const Home = () => {
                 keyExtractor={item => item.id} > </FlatList> */}
 
             <FlatList
-                data={filteredData}
+                data={selectedValue === 'All' ? filteredDataAll : filteredData}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => <ListItem name={item.name} price={item.price} image={item.image} />}
+                renderItem={({ item }) => <ListItem name={item.name} price={item.price} image={item.image} onPress={() => handleItemPress(item.id)} />}
             />
 
         </View>

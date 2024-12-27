@@ -6,24 +6,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Home from './Components/Home';
 import Add from './Components/Add';
 import Profile from './Components/Profile';
+import ItemDetail from './Components/ItemDetail';
 import MainNavigation from './navigation/MainNavigation';
 
 
-const Tab = createBottomTabNavigator();
+
 const queryClient = new QueryClient()
-
-function MyTabs() {
-  return (
-
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Add" component={Add} />
-      <Tab.Screen name="Profile" component={Profile} />
-
-    </Tab.Navigator>
-
-  );
-}
 
 
 export default function App() {
@@ -35,6 +23,7 @@ export default function App() {
     </QueryClientProvider>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

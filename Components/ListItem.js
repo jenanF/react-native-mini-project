@@ -1,14 +1,16 @@
-import { View, Text, FlatList, Image } from "react-native"
+import { View, Text, Image, TouchableOpacity } from "react-native"
 import { StyleSheet } from "react-native";
 
 
 function ListItem(props) {
     return (
-        <View style={styles.container}>
-            {/* <Image source={uri(props.image)}></Image> */}
-            <Text>{props.name}</Text>
-            <Text>{props.price}</Text>
-        </View>
+        <TouchableOpacity onPress={props.onPress}>
+            <View style={styles.container}>
+                {/* <Image source={uri(props.image)}></Image> */}
+                <Text>{props.name}</Text>
+                <Text>{props.price} $</Text>
+            </View>
+        </TouchableOpacity>
     )
 }
 

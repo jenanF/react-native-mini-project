@@ -1,19 +1,29 @@
 import { View, Text, FlatList, Image, Button } from "react-native"
 import { StyleSheet } from "react-native";
+import React from "react";
+import { useRoute } from "@react-navigation/native";
+import items from "../data";
 
-const ItemDetail = (props) => {
+const ItemDetail = ({ route }) => {
+
+    const { id } = route.params;
+
+    const item = items.find((item) => {
+        return item.id == id
+    })
+
     return (
         <View>
             <Image></Image>
-            <Text>{props.name}</Text>
+            <Text>{item.name}</Text>
 
             <View>
                 <Text>Description</Text>
-                <Text>{props.description}</Text>
+                <Text>{item.description}</Text>
             </View>
 
             <Text></Text>
-            <Text>{props.price}</Text>
+            <Text>{item.price}</Text>
         </View>
     )
 }

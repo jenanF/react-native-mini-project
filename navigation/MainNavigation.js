@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from '../Components/Home';
 import Add from '../Components/Add';
 import Profile from '../Components/Profile';
+import StackNav from './StackNav';
 
 const MainNavigation = () => {
 
@@ -11,7 +12,7 @@ const MainNavigation = () => {
 
     return (
         <Tab.Navigator>
-            <Tab.Screen name="Home" component={Home} />
+            <Tab.Screen name="Home" component={StackNav} />
             <Tab.Screen name="Add" component={Add} />
             <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
